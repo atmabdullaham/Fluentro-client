@@ -59,19 +59,43 @@ const Navbar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="space-x-4  menu menu-horizontal px-1">
             <NavLink
+              to="/"
               className={({ isActive }) =>
                 isActive ? "text-red-500 font-bold" : "text-gray-700"
               }
             >
               Home
             </NavLink>
-            <NavLink to="/find-tutors">Find Tutors</NavLink>
-            <NavLink>My Tutorials</NavLink>
-            <NavLink>My booked tutors</NavLink>
+            <NavLink
+              to="/find-tutors"
+              className={({ isActive }) =>
+                isActive ? "text-red-500 font-bold" : "text-gray-700"
+              }
+            >
+              Find Tutors
+            </NavLink>
+            <NavLink
+              to="/my-tutorials"
+              className={({ isActive }) =>
+                isActive ? "text-red-500 font-bold" : "text-gray-700"
+              }
+            >
+              My Tutorials
+            </NavLink>
+            <NavLink
+              to="/my-booked-tutors"
+              className={({ isActive }) =>
+                isActive ? "text-red-500 font-bold" : "text-gray-700"
+              }
+            >
+              My booked tutors
+            </NavLink>
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Button</a>
+          <Link to="/signup" className="btn">
+            Signup
+          </Link>
         </div>
       </div>
     </div>
