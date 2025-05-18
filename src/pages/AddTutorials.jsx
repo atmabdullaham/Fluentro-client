@@ -17,6 +17,7 @@ const AddTutorials = () => {
     const photo = form.photo.value;
     const language = form.language.value;
     const price = form.price.value;
+    const description = form.description.value;
     const tutorialData = {
       tutor: {
         name: name,
@@ -26,6 +27,7 @@ const AddTutorials = () => {
       photo,
       language,
       price,
+      description,
       review: 0,
     };
     console.log(tutorialData);
