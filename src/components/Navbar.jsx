@@ -1,7 +1,23 @@
 import { Link, NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCommentNodes } from "@fortawesome/free-solid-svg-icons";
+import { useContext } from "react";
+import AuthContext from "../providers/AuthContext";
+import toast from "react-hot-toast";
+
 const Navbar = () => {
+  const { user, LogOut } = useContext(AuthContext);
+  //   console.log(user.email);
+  const handleLogout = () => {
+    LogOut()
+      .then(() => {
+        console.log("User logged out");
+        toast.success("logged out");
+      })
+      .catch((error) => {
+        console.error("Error logging out:", error);
+      });
+  };
   return (
     <div className=" bg-base-100 ">
       <div className=" lg: w-11/12 mx-auto navbar ">
@@ -92,11 +108,43 @@ const Navbar = () => {
             </NavLink>
           </ul>
         </div>
-        <div className="navbar-end">
-          <Link to="/signup" className="btn">
-            Signup
-          </Link>
-        </div>
+        {!user && (
+          <li className="navbar-end">
+            <Link to="/login">Login</Link>
+          </li>
+        )}
+        {user && (
+          <div className="navbar-end">
+            <div className="dropdown dropdown-end z-50">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar"
+              >
+                <div title={user?.displayName} className="w-10 rounded-full">
+                  <img
+                    referrerPolicy="no-referrer"
+                    alt="User Profile Photo"
+                    src={user?.photoURL}
+                  />
+                </div>
+              </div>
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              >
+                <li className="mt-2">
+                  <button
+                    onClick={handleLogout}
+                    className="bg-gray-200 block text-center"
+                  >
+                    Logout
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
