@@ -44,6 +44,8 @@ const SignUp = () => {
       .then((result) => {
         const user = result.user;
         console.log("User signed in with Google:", user);
+        toast.success("logged in");
+        navigate("/");
       })
       .catch((error) => {
         console.error("Error signing in with Google:", error);

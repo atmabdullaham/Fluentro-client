@@ -91,6 +91,14 @@ const Navbar = () => {
               Find Tutors
             </NavLink>
             <NavLink
+              to="/add-tutorials"
+              className={({ isActive }) =>
+                isActive ? "text-red-500 font-bold" : "text-gray-700"
+              }
+            >
+              Add Tutorials
+            </NavLink>
+            <NavLink
               to="/my-tutorials"
               className={({ isActive }) =>
                 isActive ? "text-red-500 font-bold" : "text-gray-700"

@@ -3,19 +3,21 @@ import { useForm } from "react-hook-form";
 import signInAnimation from "../assets/login.json";
 import signInAnim from "../assets/loged.json";
 import Lottie from "lottie-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import googleLogo from "../assets/google.svg";
 import AuthContext from "../providers/AuthContext";
 import toast from "react-hot-toast";
 
 const Login = () => {
   const { signInWithGoogle, loginUser } = useContext(AuthContext);
+  const navigate = useNavigate();
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then((result) => {
         const user = result.user;
         console.log("User signed in with Google:", user);
         toast.success("Successfully logged in");
+        navigate("/");
       })
       .catch((error) => {
         toast.error(error.message);
