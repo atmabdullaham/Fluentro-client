@@ -9,7 +9,7 @@ const Slide = ({ text, image }) => {
       <div className="flex items-center justify-center w-1/2 h-full  ">
         <div className="text-center">
           <motion.h1
-            initial={{ y: 15, opacity: 0 }}
+            initial={{ y: 15, opacity: "0" }}
             opacity
             animate={{
               y: 0,
