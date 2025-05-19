@@ -22,9 +22,8 @@ const AddTutorials = () => {
       tutor: {
         name: name,
         email: email,
-        photo: user?.photoURL,
+        photo: photo,
       },
-      photo,
       language,
       price,
       description,
@@ -89,11 +88,12 @@ const AddTutorials = () => {
                   className="input w-full"
                   placeholder="Photo URL"
                   type="url"
+                  defaultValue={user?.photoURL}
                 />
 
                 {/* langauge */}
-                <label className="label">Language</label>
-                <select name="language" required className="select w-full">
+                <label className="label ">Language</label>
+                <select name="language" required className="select w-full ">
                   <option value="">Select</option>
                   <option value="bangla">Bangla</option>
                   <option value="english">English</option>
@@ -115,18 +115,17 @@ const AddTutorials = () => {
                 <input
                   name="price"
                   required
-                  className="input w-full"
-                  placeholder="Price"
                   type="number"
+                  placeholder="Enter price"
+                  className="w-full p-3 text-sm text-gray-900 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-sm"
                 />
                 <label className="label">Description</label>
                 <textarea
                   name="description"
                   required
-                  className="input w-full pt-2"
-                  placeholder="Description"
-                  type="text"
-                  rows="10"
+                  rows="6"
+                  placeholder="Write a detailed description..."
+                  className="w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 resize-none shadow-sm"
                 />
 
                 <input

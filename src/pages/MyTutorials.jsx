@@ -3,6 +3,8 @@ import AuthContext from "../providers/AuthContext";
 import axios from "axios";
 import deleteButton from "../assets/delete.svg";
 import updateButton from "../assets/update.svg";
+import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 const MyTutorials = () => {
   const { user } = useContext(AuthContext);
@@ -15,6 +17,52 @@ const MyTutorials = () => {
       `${import.meta.env.VITE_API_URL}/tutorials/${user?.email}`
     );
     setTutorials(data);
+  };
+
+  // handle delete tutorial
+  const handleDeleteTutorial = async (id) => {
+    console.log(id);
+    try {
+      const { data } = await axios.delete(
+        `${import.meta.env.VITE_API_URL}/tutorials/${id}`
+      );
+
+      console.log(data);
+      toast.success("Tutorial deleted");
+      fetchMyTutorials();
+    } catch (err) {
+      console.log(err);
+      toast.error(err.message);
+    }
+  };
+
+  const deleteWithConfirmation = (id) => {
+    toast((t) => (
+      <div className="flex gap-3 items-center">
+        <div>
+          <p>
+            Ary you <b>sure?</b>
+          </p>
+        </div>
+        <div className="space-x-4">
+          <button
+            className="p-1 m-1 rounded-md bg-red-400"
+            onClick={() => {
+              handleDeleteTutorial(id);
+              toast.dismiss(t.id);
+            }}
+          >
+            Yes
+          </button>
+          <button
+            className="p-1 m-1 rounded-md bg-green-400"
+            onClick={() => toast.dismiss(t.id)}
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    ));
   };
 
   return (
@@ -81,12 +129,19 @@ ${tutorial?.language === "italian" && "text-sky-600 "}
                   <th>{tutorial?.review}</th>
                   <th>
                     <div className="flex  items-center gap-2">
-                      <button className="btn bg-transparent border-0 hover:bg-transparent rounded-full m-0 p-0">
+                      <button
+                        onClick={() => {
+                          deleteWithConfirmation(tutorial?._id);
+                        }}
+                        className="btn bg-transparent border-0 hover:bg-transparent rounded-full m-0 p-0"
+                      >
                         <img className="w-4" src={deleteButton} alt="" />
                       </button>
-                      <button className="btn bg-transparent border-0 hover:bg-transparent rounded-full m-0 p-0">
-                        <img className="w-4" src={updateButton} alt="" />
-                      </button>
+                      <Link to={`/update-tutorial/${tutorial?._id}`}>
+                        <button className="btn bg-transparent border-0 hover:bg-transparent rounded-full m-0 p-0">
+                          <img className="w-4" src={updateButton} alt="" />
+                        </button>
+                      </Link>
                     </div>
                   </th>
                 </tr>
