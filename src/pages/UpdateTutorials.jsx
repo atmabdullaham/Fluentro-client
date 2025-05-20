@@ -14,7 +14,7 @@ const UpdateTutorials = () => {
   }, [id]);
   const fetchTutorialData = async () => {
     const { data } = await axios.get(
-      `${import.meta.env.VITE_API_URL}/update-tutorial/${id}`
+      `${import.meta.env.VITE_API_URL}/get-one/${id}`
     );
 
     setTutorial(data);

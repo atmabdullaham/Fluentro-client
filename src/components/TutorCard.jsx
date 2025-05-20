@@ -1,5 +1,6 @@
 import React from "react";
 import { Languages, Star, DollarSign, Eye } from "lucide-react";
+import { Link } from "react-router-dom";
 const TutorCard = ({ tutor }) => {
   return (
     <>
@@ -33,10 +34,12 @@ const TutorCard = ({ tutor }) => {
               : tutor?.description}
           </p>
           <div className="mt-6">
-            <button className="btn  border-red-100 border-2 hover:bg-red-400 hover:text-white btn-block">
-              <Eye className="w-4 h-4 mr-1" />
-              Details
-            </button>
+            <Link to={`/tutor/${tutor?._id}`}>
+              <button className="btn  border-red-100 border-2 hover:bg-red-400 hover:text-white btn-block">
+                <Eye className="w-4 h-4 mr-1" />
+                Details
+              </button>
+            </Link>
           </div>
         </div>
       </div>
