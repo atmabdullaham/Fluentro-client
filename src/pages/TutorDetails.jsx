@@ -1,11 +1,13 @@
 import axios from "axios";
 import { BookUser, Languages, LanguagesIcon, Star } from "lucide-react";
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import AuthContext from "../providers/AuthContext";
+import toast from "react-hot-toast";
 
 const TutorDetails = () => {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
   const { details } = useParams();
   const [tutor, setTutor] = useState([]);
   useEffect(() => {
@@ -24,15 +26,27 @@ const TutorDetails = () => {
     const bookingData = {
       tutor: {
         tutorId: tutor?._id,
-        name: tutor?.tutor?.name,
-        email: tutor?.tutor?.email,
         photo: tutor?.tutor?.photo,
+        email: tutor?.tutor?.email,
+        name: tutor?.tutor?.name,
       },
       language: tutor?.language,
       price: tutor?.price,
       learnerEmail: user?.email,
     };
     console.log(bookingData);
+    try {
+      await axios.post(
+        `${import.meta.env.VITE_API_URL}/add-booking`,
+        bookingData
+      );
+      toast.success("Tutor booked");
+
+      navigate("/my-booked-tutors");
+    } catch (err) {
+      console.log(err);
+      toast.error(err.message);
+    }
   };
 
   return (
@@ -61,7 +75,7 @@ const TutorDetails = () => {
                   {tutor?.description}
                 </p>
               </div>
-              <div className="flex items-center flex-col">
+              <div className="flex min-w-28 items-center flex-col">
                 <span className="text-xl mb-2">${tutor?.price}/mo</span>
                 <div className="flex items-center">
                   <Star className="w-4 h-4 mr-1  text-yellow-400" />
