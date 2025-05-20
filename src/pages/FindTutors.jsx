@@ -4,14 +4,20 @@ import TutorCard from "../components/TutorCard";
 
 const FindTutors = () => {
   const [tutors, setTutors] = useState([]);
+  const searchParams = new URLSearchParams(location.search);
+  const language = searchParams.get("language");
   useEffect(() => {
+    const fetchTutors = async () => {
+      const url = language
+        ? `${import.meta.env.VITE_API_URL}/find-tutors?language=${language}`
+        : `${import.meta.env.VITE_API_URL}/find-tutors`;
+
+      const { data } = await axios.get(url);
+      setTutors(data);
+    };
+
     fetchTutors();
-  }, []);
-  const fetchTutors = async () => {
-    const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/tutors`);
-    setTutors(data);
-  };
-  console.log(tutors);
+  }, [language]);
   return (
     <div className="bg-base-200 pt-10 pb-10">
       <div className="w-11/12 lg:w-10/12 mx-auto pb-4 text-xl font-bold ">

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Banner from "../components/Banner";
 import Stats from "../components/Stats";
+import LanguageCategory from "../components/LanguageCategory";
 
 const Home = () => {
   useEffect(() => {
@@ -11,6 +12,7 @@ const Home = () => {
       <div className="">
         <Banner></Banner>
         <Stats></Stats>
+        <LanguageCategory></LanguageCategory>
       </div>
     </div>
   );
