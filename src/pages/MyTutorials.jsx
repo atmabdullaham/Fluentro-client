@@ -7,6 +7,9 @@ import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 
 const MyTutorials = () => {
+  useEffect(() => {
+    document.title = "My Tutorials | Fluentor";
+  }, []);
   const { user } = useContext(AuthContext);
   const [tutorials, setTutorials] = useState([]);
   useEffect(() => {

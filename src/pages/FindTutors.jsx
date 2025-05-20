@@ -3,6 +3,9 @@ import React, { useEffect, useState } from "react";
 import TutorCard from "../components/TutorCard";
 
 const FindTutors = () => {
+  useEffect(() => {
+    document.title = "Find Tutors | Fluentro";
+  }, []);
   const [tutors, setTutors] = useState([]);
   const searchParams = new URLSearchParams(location.search);
   const language = searchParams.get("language");

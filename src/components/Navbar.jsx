@@ -44,23 +44,46 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
-              <li>
-                <a>Item 1</a>
-              </li>
-              <li>
-                <a>Parent</a>
-                <ul className="p-2">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a>Item 3</a>
-              </li>
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  isActive ? "text-red-500 font-bold" : "text-gray-700"
+                }
+              >
+                Home
+              </NavLink>
+              <NavLink
+                to="/find-tutors"
+                className={({ isActive }) =>
+                  isActive ? "text-red-500 font-bold" : "text-gray-700"
+                }
+              >
+                Find Tutors
+              </NavLink>
+              <NavLink
+                to="/add-tutorials"
+                className={({ isActive }) =>
+                  isActive ? "text-red-500 font-bold" : "text-gray-700"
+                }
+              >
+                Add Tutorials
+              </NavLink>
+              <NavLink
+                to="/my-tutorials"
+                className={({ isActive }) =>
+                  isActive ? "text-red-500 font-bold" : "text-gray-700"
+                }
+              >
+                My Tutorials
+              </NavLink>
+              <NavLink
+                to="/my-booked-tutors"
+                className={({ isActive }) =>
+                  isActive ? "text-red-500 font-bold" : "text-gray-700"
+                }
+              >
+                My booked tutors
+              </NavLink>
             </ul>
           </div>
 

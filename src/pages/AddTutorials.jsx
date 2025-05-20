@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 
 import AuthContext from "../providers/AuthContext";
 import toast from "react-hot-toast";
@@ -6,6 +6,9 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const AddTutorials = () => {
+  useEffect(() => {
+    document.title = "Add Tutorials | Fluentro";
+  }, []);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 

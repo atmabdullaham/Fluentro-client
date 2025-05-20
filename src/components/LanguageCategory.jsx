@@ -19,14 +19,16 @@ const LanguageCategory = () => {
   }, []);
 
   return (
-    <div className="bg-base-200 pt-10 pb-10">
+    <div className=" bg-white pt-28 pb-28">
       <div className="w-11/12 lg:w-10/12 mx-auto text-4xl font-bold ">
-        <h2 className="mb-8 text-gray-600">Language Category Available</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        <h2 className="mb-8 text-gray-600 text-center">
+          Pick from {categories.length}+ Languages
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {categories.map((stat) => (
-            <div className="card card-border w-full">
+            <div className="card card-border w-full rounded-lg">
               <Link to={`find-tutors?language=${stat}`} key={stat}>
-                <div className="card-body border-2 border-base-300">
+                <div className="card-body bg-base-200">
                   <div className="flex items-center justify-between gap-4">
                     <div className="flex items-center gap-4">
                       <img className="w-8 h-8" src={categoryLogo} alt="" />

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import signInAnimation from "../assets/login.json";
 import signInAnim from "../assets/loged.json";
@@ -9,6 +9,9 @@ import AuthContext from "../providers/AuthContext";
 import toast from "react-hot-toast";
 
 const Login = () => {
+  useEffect(() => {
+    document.title = "Login | Fluentro";
+  }, []);
   const { signInWithGoogle, loginUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const handleGoogleSignIn = () => {

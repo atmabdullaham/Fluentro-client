@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import AuthContext from "../providers/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -9,6 +9,9 @@ import Lottie from "lottie-react";
 import toast from "react-hot-toast";
 
 const SignUp = () => {
+  useEffect(() => {
+    document.title = "SignUp | Fluentor";
+  }, []);
   const { signInWithGoogle, createUserWithEP, updateUser, setUser } =
     useContext(AuthContext);
   const navigate = useNavigate();

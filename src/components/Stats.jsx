@@ -16,7 +16,7 @@ const Stats = () => {
   }, []);
   console.log(stats);
   return (
-    <div className="bg-red-100  pt-20 pb-20">
+    <div className="bg-red-50  pt-28 pb-28">
       <div className="lg:w-10/12 mx-auto ">
         <div className="stats shadow w-full bg-base-100">
           <div className="stat place-items-center">

@@ -51,6 +51,9 @@ const TutorDetails = () => {
       toast.error(err.response.data.message);
     }
   };
+  useEffect(() => {
+    document.title = "TutorDetails | Fluentor";
+  }, []);
 
   return (
     <div className="bg-base-200 pt-10 pb-10">
