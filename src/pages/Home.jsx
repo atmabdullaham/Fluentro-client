@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import Banner from "../components/Banner";
+import Stats from "../components/Stats";
 
 const Home = () => {
   useEffect(() => {
@@ -7,8 +8,9 @@ const Home = () => {
   }, []);
   return (
     <div className="bg-base-200">
-      <div className="w-11/12 mx-auto">
+      <div className="">
         <Banner></Banner>
+        <Stats></Stats>
       </div>
     </div>
   );

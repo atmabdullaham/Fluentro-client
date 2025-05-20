@@ -15,38 +15,40 @@ import Slide from "./Slide";
 
 const Banner = () => {
   return (
-    <div className="container px-6 py-10 mx-auto">
-      <Swiper
-        spaceBetween={30}
-        centeredSlides={true}
-        loop={true}
-        autoplay={{
-          delay: 5000,
-          disableOnInteraction: false,
-        }}
-        pagination={{
-          clickable: true,
-        }}
-        // navigation={true}
-        modules={[Autoplay, Pagination]}
-        className="mySwiper"
-      >
-        <SwiperSlide>
-          <Slide
-            image={imageOne}
-            text="Start Learning. Stay Curious. Succeed Online"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Slide
-            image={imageTwo}
-            text="Confused About Learning Online? Let Us Guide You!"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Slide image={imageThree} text="From Questions to Confidence " />
-        </SwiperSlide>
-      </Swiper>
+    <div className="bg-base-200 ">
+      <div className="container px-6 py-10 mx-auto lg:w-10/12 pb-4">
+        <Swiper
+          spaceBetween={30}
+          centeredSlides={true}
+          loop={true}
+          autoplay={{
+            delay: 5000,
+            disableOnInteraction: false,
+          }}
+          pagination={{
+            clickable: true,
+          }}
+          // navigation={true}
+          modules={[Autoplay, Pagination]}
+          className="mySwiper"
+        >
+          <SwiperSlide>
+            <Slide
+              image={imageOne}
+              text="Start Learning. Stay Curious. Succeed Online"
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            <Slide
+              image={imageTwo}
+              text="Confused About Learning Online? Let Us Guide You!"
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            <Slide image={imageThree} text="From Questions to Confidence " />
+          </SwiperSlide>
+        </Swiper>
+      </div>
     </div>
   );
 };

@@ -34,7 +34,10 @@ const TutorDetails = () => {
       price: tutor?.price,
       learnerEmail: user?.email,
     };
-    console.log(bookingData);
+
+    if (user?.email === tutor?.tutor?.email) {
+      return toast.error("You cannot book your own tutorial");
+    }
     try {
       await axios.post(
         `${import.meta.env.VITE_API_URL}/add-booking`,
@@ -45,7 +48,7 @@ const TutorDetails = () => {
       navigate("/my-booked-tutors");
     } catch (err) {
       console.log(err);
-      toast.error(err.message);
+      toast.error(err.response.data.message);
     }
   };
 

@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 const MyBookedTutors = () => {
   const { user } = useContext(AuthContext);
   const [bookedTutors, setBookedTutors] = useState([]);
+
   useEffect(() => {
     fetchMyBookedTutors();
   }, [user]);
@@ -17,16 +18,19 @@ const MyBookedTutors = () => {
     setBookedTutors(data);
   };
   console.log(bookedTutors);
-  const handleReview = async (tutorId) => {
-    console.log(tutorId);
+
+  // handle review
+  const handleReview = async (tutorId, userEmail) => {
+    console.log(tutorId, userEmail);
     try {
       await axios.patch(
-        `${import.meta.env.VITE_API_URL}/update-review/${tutorId}`
+        `${import.meta.env.VITE_API_URL}/update-review/${tutorId}`,
+        { email: userEmail }
       );
       toast.success("review added");
     } catch (err) {
       console.log(err);
-      toast.error(err.message);
+      toast.error(err.response.data.message);
     }
   };
   return (
@@ -47,7 +51,6 @@ const MyBookedTutors = () => {
                 <th>Name</th>
                 <th>Language</th>
                 <th>Price</th>
-
                 <th>Actions</th>
               </tr>
             </thead>
@@ -95,7 +98,10 @@ ${bookedTutor?.language === "italian" && "text-sky-600 "}
                     <div className="flex  items-center gap-2">
                       <button
                         onClick={() => {
-                          handleReview(bookedTutor?.tutor?.tutorId);
+                          handleReview(
+                            bookedTutor?.tutor?.tutorId,
+                            user?.email
+                          );
                         }}
                         className="btn bg-transparent border-0 hover:bg-transparent rounded-full m-0 p-0"
                       >
