@@ -14,11 +14,11 @@ const Stats = () => {
     };
     fetchStats();
   }, []);
-  console.log(stats);
+
   return (
-    <div className="bg-red-50  pt-28 pb-28">
-      <div className="lg:w-10/12 mx-auto ">
-        <div className="stats shadow w-full bg-base-100">
+    <div className="bg-red-50  py-10 md:py-28">
+      <div className="md:w-11/12 lg:w-10/12 mx-auto flex justify-center">
+        <div className="stats flex flex-col md:flex-row w-1/2 shadow md:w-full bg-base-100">
           <div className="stat place-items-center">
             <div className="stat-title  text-lg font-semibold">Tutors</div>
             <div className="stat-value">{stats.totalTutors}</div>

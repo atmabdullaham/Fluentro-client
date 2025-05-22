@@ -2,7 +2,7 @@ import React from "react";
 
 const Accordion = () => {
   return (
-    <div className="bg-white pt-20 pb-20">
+    <div className="bg-white py-10 md:py-28">
       <div className="w-11/12 lg:w-10/12 mx-auto flex justify-center">
         <div className="join join-vertical bg-base-100 max-w-2xl">
           <div className="collapse collapse-arrow join-item border-base-300 border">

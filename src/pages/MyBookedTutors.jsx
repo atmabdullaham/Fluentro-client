@@ -3,6 +3,7 @@ import AuthContext from "../providers/AuthContext";
 import axios from "axios";
 import reviewIcon from "../assets/review.png";
 import toast from "react-hot-toast";
+import { Turtle } from "lucide-react";
 
 const MyBookedTutors = () => {
   const { user } = useContext(AuthContext);
@@ -13,15 +14,16 @@ const MyBookedTutors = () => {
   }, [user]);
   const fetchMyBookedTutors = async () => {
     const { data } = await axios.get(
-      `${import.meta.env.VITE_API_URL}/my-booked-tutors/${user?.email}`
+      `${import.meta.env.VITE_API_URL}/my-booked-tutors/${user?.email}`,
+      {
+        withCredentials: true,
+      }
     );
     setBookedTutors(data);
   };
-  console.log(bookedTutors);
 
   // handle review
   const handleReview = async (tutorId, userEmail) => {
-    console.log(tutorId, userEmail);
     try {
       await axios.patch(
         `${import.meta.env.VITE_API_URL}/update-review/${tutorId}`,
@@ -29,7 +31,6 @@ const MyBookedTutors = () => {
       );
       toast.success("review added");
     } catch (err) {
-      console.log(err);
       toast.error(err.response.data.message);
     }
   };

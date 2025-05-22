@@ -3,12 +3,16 @@ import { useForm } from "react-hook-form";
 import signInAnimation from "../assets/login.json";
 import signInAnim from "../assets/loged.json";
 import Lottie from "lottie-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import googleLogo from "../assets/google.svg";
 import AuthContext from "../providers/AuthContext";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 const Login = () => {
+  const location = useLocation();
+  const from = location?.state || "/";
+
   useEffect(() => {
     document.title = "Login | Fluentro";
   }, []);
@@ -17,10 +21,12 @@ const Login = () => {
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then((result) => {
-        const user = result.user;
-        console.log("User signed in with Google:", user);
+        const user = { email: result.user.email };
+        axios.post(`${import.meta.env.VITE_API_URL}/jwt`, user, {
+          withCredentials: true,
+        });
         toast.success("Successfully logged in");
-        navigate("/");
+        navigate(from);
       })
       .catch((error) => {
         toast.error(error.message);
@@ -37,16 +43,12 @@ const Login = () => {
   const onSubmit = (data) => {
     const { email, password } = data;
     loginUser(email, password)
-      .then((userCredential) => {
-        console.log(userCredential.user);
+      .then(() => {
         toast.success("Successfully logged in");
       })
       .catch((error) => {
-        console.log(error.message);
         toast.error(error.message);
       });
-
-    console.log(data.email, data.password);
   };
   return (
     <div className="hero  bg-base-200 min-h-[calc(100vh-280px)]">

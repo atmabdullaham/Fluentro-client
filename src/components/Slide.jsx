@@ -4,13 +4,12 @@ import { motion } from "framer-motion";
 
 const Slide = ({ text, image }) => {
   return (
-    <div className="w-full flex h-[38rem] items-center justify-center">
+    <div className="w-full  flex flex-col md:flex-row h-[38rem] items-center justify-center">
       {/* text */}
-      <div className="flex items-center justify-center w-1/2 h-full  ">
+      <div className=" flex items-center justify-center w-full md:w-1/2 h-full  ">
         <div className="text-center">
           <motion.h1
-            initial={{ y: 15, opacity: "0" }}
-            opacity
+            initial={{ y: 15, opacity: 0 }}
             animate={{
               y: 0,
               opacity: 1,
@@ -26,7 +25,7 @@ const Slide = ({ text, image }) => {
                 repeatType: "reverse",
               },
             }}
-            className="text-4xl font-semibold text-black lg:text-4xl"
+            className="text-xl md:text-2xl  font-semibold text-black lg:text-4xl"
           >
             {text}
           </motion.h1>
@@ -40,7 +39,7 @@ const Slide = ({ text, image }) => {
         </div>
       </div>
       {/* image */}
-      <div className="w-1/2  h-full">
+      <div className="w-full md:w-1/2  h-full">
         <motion.img
           initial={{ opacity: 0.8, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}

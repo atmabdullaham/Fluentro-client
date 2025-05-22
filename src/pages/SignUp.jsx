@@ -9,6 +9,7 @@ import Lottie from "lottie-react";
 import toast from "react-hot-toast";
 
 const SignUp = () => {
+  // Set Title
   useEffect(() => {
     document.title = "SignUp | Fluentor";
   }, []);
@@ -32,26 +33,20 @@ const SignUp = () => {
 
       await updateUser(name, photo);
       setUser({ ...user, displayName: name, photoURL: photo });
-
       toast.success("Successfully registered");
       navigate("/");
     } catch (err) {
-      console.error(err);
       toast.error(err?.message || "Registration failed");
     }
-
-    console.log(name, email, password, photo);
   };
   const handleGoogleSignIn = () => {
     signInWithGoogle()
-      .then((result) => {
-        const user = result.user;
-        console.log("User signed in with Google:", user);
+      .then(() => {
         toast.success("logged in");
         navigate("/");
       })
       .catch((error) => {
-        console.error("Error signing in with Google:", error);
+        toast.error(error.message);
       });
   };
   return (

@@ -9,14 +9,14 @@ import MyTutorials from "../pages/MyTutorials";
 import UpdateTutorials from "../pages/UpdateTutorials";
 import TutorDetails from "../pages/TutorDetails";
 import MyBookedTutors from "../pages/MyBookedTutors";
+import PrivateRoute from "./PrivateRoute";
+import Error from "../pages/Error";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
-    errorElement: (
-      <div className="text-red-600 text-5xl text-center">Error</div>
-    ),
+    errorElement: <Error></Error>,
     children: [
       {
         index: true,
@@ -36,21 +36,44 @@ const router = createBrowserRouter([
       },
       {
         path: "/add-tutorials",
-        element: <AddTutorials></AddTutorials>,
+        element: (
+          <PrivateRoute>
+            <AddTutorials></AddTutorials>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/my-tutorials",
-        element: <MyTutorials></MyTutorials>,
+        element: (
+          <PrivateRoute>
+            <MyTutorials></MyTutorials>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/update-tutorial/:id",
-        element: <UpdateTutorials></UpdateTutorials>,
+        element: (
+          <PrivateRoute>
+            <UpdateTutorials></UpdateTutorials>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/tutor/:details",
-        element: <TutorDetails></TutorDetails>,
+        element: (
+          <PrivateRoute>
+            <TutorDetails></TutorDetails>
+          </PrivateRoute>
+        ),
       },
-      { path: "/my-booked-tutors", element: <MyBookedTutors></MyBookedTutors> },
+      {
+        path: "/my-booked-tutors",
+        element: (
+          <PrivateRoute>
+            <MyBookedTutors></MyBookedTutors>
+          </PrivateRoute>
+        ),
+      },
     ],
   },
 ]);

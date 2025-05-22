@@ -16,7 +16,7 @@ import Slide from "./Slide";
 const Banner = () => {
   return (
     <div className="bg-base-200 ">
-      <div className="container px-6 py-10 mx-auto lg:w-10/12 pb-4">
+      <div className="container px-6 py-4 md:py-10 mx-auto lg:w-10/12 pb-4">
         <Swiper
           spaceBetween={30}
           centeredSlides={true}

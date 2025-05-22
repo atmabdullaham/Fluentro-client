@@ -24,7 +24,7 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <section className="pt-28 pb-28 bg-red-50 text-gray-800">
+    <section className="py-10 md:py-28 bg-red-50 text-gray-800">
       <div className="max-w-6xl mx-auto px-4 text-center">
         <h2 className="text-3xl font-bold mb-12">
           Why Learners & Parents Love Us

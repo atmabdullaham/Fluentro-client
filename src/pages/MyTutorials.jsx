@@ -17,24 +17,22 @@ const MyTutorials = () => {
   }, [user]);
   const fetchMyTutorials = async () => {
     const { data } = await axios.get(
-      `${import.meta.env.VITE_API_URL}/tutorials/${user?.email}`
+      `${import.meta.env.VITE_API_URL}/tutorials/${user?.email}`,
+      { withCredentials: true }
     );
     setTutorials(data);
   };
 
   // handle delete tutorial
   const handleDeleteTutorial = async (id) => {
-    console.log(id);
     try {
-      const { data } = await axios.delete(
-        `${import.meta.env.VITE_API_URL}/tutorials/${id}`
-      );
+      await axios.delete(`${import.meta.env.VITE_API_URL}/tutorials/${id}`, {
+        withCredentials: true,
+      });
 
-      console.log(data);
       toast.success("Tutorial deleted");
       fetchMyTutorials();
     } catch (err) {
-      console.log(err);
       toast.error(err.message);
     }
   };

@@ -11,6 +11,7 @@ import {
 } from "firebase/auth";
 import AuthContext from "./AuthContext";
 import { app } from "../firebase/firebase.config";
+import axios from "axios";
 
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
@@ -54,7 +55,19 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      console.log("CurrentUser-->", currentUser);
+      if (currentUser?.email) {
+        axios.post(`${import.meta.env.VITE_API_URL}/jwt`, user, {
+          withCredentials: true,
+        });
+      } else {
+        axios.post(
+          `${import.meta.env.VITE_API_URL}/logout`,
+          {},
+          {
+            withCredentials: true,
+          }
+        );
+      }
       setLoading(false);
     });
     return () => {

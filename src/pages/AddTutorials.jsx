@@ -32,17 +32,19 @@ const AddTutorials = () => {
       description,
       review: 0,
     };
-    console.log(tutorialData);
+
     try {
       await axios.post(
         `${import.meta.env.VITE_API_URL}/add-tutorial`,
-        tutorialData
+        tutorialData,
+        {
+          withCredentials: true,
+        }
       );
       toast.success("Tutorial added");
       form.reset();
       navigate("/my-tutorials");
     } catch (err) {
-      console.log(err);
       toast.error(err.message);
     }
   };

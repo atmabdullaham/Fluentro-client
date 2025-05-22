@@ -17,7 +17,10 @@ const UpdateTutorials = () => {
   }, [id]);
   const fetchTutorialData = async () => {
     const { data } = await axios.get(
-      `${import.meta.env.VITE_API_URL}/get-one/${id}`
+      `${import.meta.env.VITE_API_URL}/get-one/${id}`,
+      {
+        withCredentials: true,
+      }
     );
 
     setTutorial(data);
@@ -43,7 +46,7 @@ const UpdateTutorials = () => {
       description,
       review: tutorial?.review,
     };
-    console.log(tutorialData);
+
     // for comparison with form  data
     const originalData = {
       tutor: {
@@ -66,13 +69,16 @@ const UpdateTutorials = () => {
     try {
       await axios.put(
         `${import.meta.env.VITE_API_URL}/update-tutorial/${id}`,
-        tutorialData
+
+        tutorialData,
+        {
+          withCredentials: true,
+        }
       );
       toast.success("Tutorial updated");
       form.reset();
       navigate("/my-tutorials");
     } catch (err) {
-      console.log(err);
       toast.error(err.message);
     }
   };

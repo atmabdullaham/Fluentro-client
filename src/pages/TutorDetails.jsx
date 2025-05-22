@@ -6,6 +6,10 @@ import AuthContext from "../providers/AuthContext";
 import toast from "react-hot-toast";
 
 const TutorDetails = () => {
+  useEffect(() => {
+    document.title = "TutorDetails | Fluentro";
+  }, []);
+
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const { details } = useParams();
@@ -15,12 +19,12 @@ const TutorDetails = () => {
   }, [details]);
   const fetchTutorData = async () => {
     const { data } = await axios.get(
-      `${import.meta.env.VITE_API_URL}/get-one/${details}`
+      `${import.meta.env.VITE_API_URL}/get-one/${details}`,
+      { withCredentials: true }
     );
 
     setTutor(data);
   };
-  console.log(tutor);
 
   const handleBooking = async () => {
     const bookingData = {
@@ -47,13 +51,9 @@ const TutorDetails = () => {
 
       navigate("/my-booked-tutors");
     } catch (err) {
-      console.log(err);
       toast.error(err.response.data.message);
     }
   };
-  useEffect(() => {
-    document.title = "TutorDetails | Fluentor";
-  }, []);
 
   return (
     <div className="bg-base-200 pt-10 pb-10">

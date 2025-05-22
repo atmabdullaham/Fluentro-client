@@ -19,7 +19,7 @@ const LanguageCategory = () => {
   }, []);
 
   return (
-    <div className=" bg-white pt-28 pb-28">
+    <div className=" bg-white py-10 md:py-28">
       <div className="w-11/12 lg:w-10/12 mx-auto text-4xl font-bold ">
         <h2 className="mb-8 text-gray-600 text-center">
           Pick from {categories.length}+ Languages
@@ -27,7 +27,7 @@ const LanguageCategory = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {categories.map((stat) => (
             <div className="card card-border w-full rounded-lg">
-              <Link to={`find-tutors?language=${stat}`} key={stat}>
+              <Link to={`/find-tutors?language=${stat}`} key={stat}>
                 <div className="card-body bg-base-200">
                   <div className="flex items-center justify-between gap-4">
                     <div className="flex items-center gap-4">
