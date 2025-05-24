@@ -20,13 +20,22 @@ const Login = () => {
   const navigate = useNavigate();
   const handleGoogleSignIn = () => {
     signInWithGoogle()
-      .then((result) => {
+      .then(async (result) => {
         const user = { email: result.user.email };
-        axios.post(`${import.meta.env.VITE_API_URL}/jwt`, user, {
-          withCredentials: true,
-        });
-        toast.success("Successfully logged in");
-        navigate(from);
+
+        try {
+          // ✅ Wait for JWT to be received and cookie to be set
+          await axios.post(`${import.meta.env.VITE_API_URL}/jwt`, user, {
+            withCredentials: true,
+          });
+
+          toast.success("Successfully logged in");
+
+          // ✅ Navigate only after token cookie is set
+          navigate(from);
+        } catch (error) {
+          toast.error("Login failed: " + error.message);
+        }
       })
       .catch((error) => {
         toast.error(error.message);

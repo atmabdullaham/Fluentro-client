@@ -31,7 +31,7 @@ const Slide = ({ text, image }) => {
           </motion.h1>
           <br />
           <Link
-            to="/book-tutor"
+            to="/find-tutors"
             className=" px-5 py-2 mt-4 text-sm font-medium text-white capitalize transition-colors duration-300 transform bg-red-400 rounded-md lg:w-auto hover:bg-red-500 focus:outline-none focus:bg-gray-500"
           >
             Book a Demo
